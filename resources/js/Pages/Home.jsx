@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import Header from './Header';
+import React from 'react';
+import Header from '../components/Header';
+import Products from '../components/ProductsHome';
 
 const Home = () => {
     return (
-        <Header/>
-    )
-}
+        <div>
+            <Header />
+            <Products />
+        </div>
+    );
+};
 
-export default Home
+export default Home;
