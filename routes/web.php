@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +19,11 @@ use Inertia\Inertia;
 //     return view('welcome');
 // });
 
+
+//El enrutamiento en Laravel es el proceso de definir las rutas de una aplicacion web y como deben ser manejadas.Una ruta se define como una URL y una accion que se ejecuta en el servidor cuando se accede a ella.La accion puede ser una funcion o un metodo de un controlador que devuelve una respuesta HTTP.
 Route::get('/', function () {
-    return Inertia::render('Home'); // This will get component Test.jsx from the resources/js/Pages/Test.jsx
+    return Inertia::render('Home');
 });
+
+Route::get('/products', [ProductController::class, 'index']
+);
