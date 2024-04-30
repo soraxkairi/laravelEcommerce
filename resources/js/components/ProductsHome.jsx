@@ -1,64 +1,72 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import img1 from '../images/model1.jpg';
+import img2 from '../images/model2.jpg';
 const Button = ({ label, data }) => {
-    return (
-        <button
-            style={{
-                padding: "0.5rem 1rem",
-                margin: "0.5rem",
-                backgroundColor: "#0074D9",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-            }}
-        >
-            <div style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>
-                <p>{data.product_name}</p>
-                <p>{data.price}</p>
-                <p>{data.description}</p>
-            </div>
-        </button>
-    );
+  const [isHover, setIsHover] = useState(false);
+
+  const boxStyle = {width: "100%",height: "100%",padding: "0.5rem 1rem",margin: "10px",backgroundColor: isHover ? "lightgray" : "gray",color: "white",
+    border: "none",borderRadius: "20px",cursor: "pointer",display: "flex",justifyContent: "space-between",flexDirection: "column",alignItems: "center",transition: ".2s",
+    cursor: "pointer",
+  };
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
+  return (
+    <div style={{ width: "100%" }}>
+
+      <button
+        style={boxStyle}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <img
+        //   src={data.image_url}
+          src={img1}
+          alt={data.product_name}
+          style={{ width: "100%", borderRadius: "20px", objectFit:"cover"}}
+        />
+
+        <p style={{ marginTop: "0.5rem" }}>{data.product_name}</p>
+      </button>
+
+    </div>
+  );
 };
 
-
 const Products = () => {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("/products");
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error("Cant get products data:", error);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("products");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Cant get products data:", error);
+      }
+    };
 
-        fetchData();
-    }, []);
+    fetchData();
+  }, []);
 
-    // const products = [
-    //     { label: 'Producto 1', data: 'Precio: $10' },
-    //     { label: 'Producto 2', data: 'Precio: $15' },
-    //     { label: 'Producto 3', data: 'Precio: $20' },
-    //     { label: 'Producto 4', data: 'Precio: $25' },
-    // ];
-
-    return (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-            {products.length > 0 &&
-                products.map((product, index) => (
-                    <Button
-                        key={index}
-                        data={product}
-                    />
-                ))}
-        </div>
-    );
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", marginTop:"2%" }}>
+      <h2 style={{ fontWeight: "bold", fontSize:"160%"  }}>Productos más recientes: </h2>
+      <div style={{ display: "flex", justifyContent: "center", gap: "16px" }}>
+        {products.length > 0 &&
+          products.map((product, index) => (
+            <Button key={index} data={product} />
+          ))}
+      </div>
+    </div>
+  );
 };
 
 export default Products;
