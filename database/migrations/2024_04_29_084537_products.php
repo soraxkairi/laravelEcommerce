@@ -11,6 +11,14 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('category', function($table)
+        {
+            $table->increments('id');
+            $table->string('category_name');
+            $table->timestamps();
+
+        });
+
         Schema::create('products', function($table)
         {
             $table->increments('id');
@@ -18,9 +26,11 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('category');
+            $table->unsignedInteger('category_id');
             $table->decimal('price', 8, 2);
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('category');
         });
     }
 
