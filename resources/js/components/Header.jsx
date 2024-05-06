@@ -23,44 +23,69 @@ const Header = () => {
                 justifyContent: "space-between",
             }}
         >
-            <div style={{flexDirection:"row", display:"flex", gap:"32px" }}>
-                <div className="logo" style={{flexShrink: "0"}}>
+            <div style={{ flexDirection: "row", display: "flex", gap: "32px" }}>
+                <div className="logo" style={{ flexShrink: "0" }}>
                     <img
                         src={logo}
                         alt="Logo"
                         style={{ width: "100px", borderRadius: "30px" }}
                     />
                 </div>
-                <div style={{position:"relative", marginLeft:"4%"}}>
+                <div style={{ position: "relative", marginLeft: "4%" }}>
                     <button
                         className={`menu-button ${menuOpen ? "open" : ""}`}
                         onClick={toggleMenu}
                         style={{
-                            backgroundColor: "transparent",
+                            backgroundColor: "#F7F7F7",
                             border: "none",
                             fontSize: "1.5rem",
                             cursor: "pointer",
+                            borderRadius:"15px"
                         }}
                     >
-                        ☰
+                        <p>MENU</p>
+                        {menuOpen ? <p>↑</p> : <p>↓</p>}
                     </button>
                     {menuOpen && (
-                        <ul className="menu-items" style={{position:"absolute"}}>
+                        <ul
+                            className="menu-items"
+                            style={{
+                                position: "absolute",
+                                background: "white",
+                                border: "1px solid #ccc",
+                                borderRadius:"20px",
+                                overflow:"hidden",
+                                marginLeft:"130%",
+                                marginTop:"-40%"
+                            }}
+                        >
                             <li
-                                style={{ padding: "8px", whiteSpace: "nowrap" }}
+                                style={{
+                                    padding: "8px",
+                                    whiteSpace: "nowrap",
+                                    background: "#f5f5f5",
+
+
+                                }}
                                 onClick={() => handleItemClick("Elemento 1")}
                             >
                                 Elemento 1
                             </li>
                             <li
-                                style={{ padding: "8px", whiteSpace: "nowrap" }}
+                                style={{
+                                    padding: "8px",
+                                    whiteSpace: "nowrap",
+                                    background: "#ddd",
+                                }}
                                 onClick={() => handleItemClick("Elemento 2")}
                             >
                                 Elemento 2
                             </li>
+
                             {/* Resto de elementos... */}
                         </ul>
                     )}
+
                     {/* Resto de tu contenido... */}
                 </div>
             </div>
