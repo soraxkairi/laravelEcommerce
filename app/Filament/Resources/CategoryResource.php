@@ -23,7 +23,7 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category')->label('Category')->required()
+                Forms\Components\TextInput::make('category_name')->label('Category')->required()
                     ->maxLength(30),
             ]);
     }
@@ -32,8 +32,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
-            ])
+                Tables\Columns\TextColumn::make('category_name')
+                ->color('warning'),            ])
             ->filters([
                 //
             ])

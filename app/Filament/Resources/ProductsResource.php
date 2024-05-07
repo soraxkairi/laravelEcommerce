@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductsResource\Pages;
 use App\Filament\Resources\ProductsResource\RelationManagers;
+use App\Models\category;
 use App\Models\Products;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -30,20 +31,18 @@ class ProductsResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('product_name')->label('Name of the product')->required()
                                     ->maxLength(30),
-                                // Forms\Components\Select::make('id_categoria_padre')
-                                //     ->label('Padre')
-                                //     ->options(
-                                //         ConfigCategoria::all()->pluck('nombre', 'id')
-
-                                //     ),
+                                Forms\Components\Select::make('category_id')
+                                    ->label('Category')
+                                    ->required()
+                                    ->options(
+                                        category::all()->pluck('category_name','id')
+                                    ),
 
                                 Forms\Components\TextInput::make('stock')->label('Stock')->required()
                                     ->maxLength(3),
-                                Forms\Components\TextInput::make('category')->label('Category')->required()
-                                    ->maxLength(30),
+
                                 Forms\Components\TextInput::make('price')->label('Price')->required()
-                                    ->numeric(2)
-                                    ->maxLength(30),
+                                    ->numeric(2),
                                 Forms\Components\Group::make()
                                     ->schema([
                                         Forms\Components\Section::make('Descripction & Image')
