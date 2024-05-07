@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../images/LogoAsier.png";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [categories, setListCategory] = useState();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -12,6 +13,27 @@ const Header = () => {
     const handleItemClick = (item) => {
         setSelectedItem(item);
     };
+
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("category");
+                const data = await response.json();
+                setListCategory(data);
+            } catch (error) {
+                console.error("Cant get products data:", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if (selectedItem) {
+            console.log(selectedItem);
+        }
+    }, [selectedItem]);
 
     return (
         <header
@@ -32,20 +54,23 @@ const Header = () => {
                     />
                 </div>
                 <div style={{ position: "relative", marginLeft: "4%" }}>
-                    <button
-                        className={`menu-button ${menuOpen ? "open" : ""}`}
-                        onClick={toggleMenu}
-                        style={{
-                            backgroundColor: "#F7F7F7",
-                            border: "none",
-                            fontSize: "1.5rem",
-                            cursor: "pointer",
-                            borderRadius:"15px"
-                        }}
-                    >
-                        <p>MENU</p>
-                        {menuOpen ? <p>↑</p> : <p>↓</p>}
-                    </button>
+                    {categories != null && (
+                        <button
+                            className={`menu-button ${menuOpen ? "open" : ""}`}
+                            onClick={toggleMenu}
+                            style={{
+                                backgroundColor: "#F7F7F7",
+                                border: "none",
+                                width: "80px",
+                                height: "80px",
+                                fontSize: "1.5rem",
+                                cursor: "pointer",
+                                borderRadius: "15px",
+                            }}
+                        >
+                            ☰
+                        </button>
+                    )}
                     {menuOpen && (
                         <ul
                             className="menu-items"
@@ -53,40 +78,29 @@ const Header = () => {
                                 position: "absolute",
                                 background: "white",
                                 border: "1px solid #ccc",
-                                borderRadius:"20px",
-                                overflow:"hidden",
-                                marginLeft:"130%",
-                                marginTop:"-40%"
+                                borderRadius: "20px",
+                                overflow: "hidden",
+                                marginLeft: "130%",
+                                marginTop: "-40%",
                             }}
                         >
-                            <li
-                                style={{
-                                    padding: "8px",
-                                    whiteSpace: "nowrap",
-                                    background: "#f5f5f5",
-
-
-                                }}
-                                onClick={() => handleItemClick("Elemento 1")}
-                            >
-                                Elemento 1
-                            </li>
-                            <li
-                                style={{
-                                    padding: "8px",
-                                    whiteSpace: "nowrap",
-                                    background: "#ddd",
-                                }}
-                                onClick={() => handleItemClick("Elemento 2")}
-                            >
-                                Elemento 2
-                            </li>
-
-                            {/* Resto de elementos... */}
+                            {categories.map((category, index) => (
+                                <li
+                                    key={index}
+                                    style={{
+                                        padding: "8px",
+                                        whiteSpace: "nowrap",
+                                    }}
+                                    onClick={() =>
+                                        handleItemClick(category.category_name)
+                                    }
+                                >
+                                    {category.category_name}{" "}
+                                </li>
+                            ))}
                         </ul>
                     )}
 
-                    {/* Resto de tu contenido... */}
                 </div>
             </div>
             <div

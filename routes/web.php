@@ -1,6 +1,9 @@
 <?php
 
+use App\Filament\Resources\CategoryResource;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -26,3 +29,6 @@ Route::get('/', function () {
 });
 
 Route::get('products', [ProductController::class, 'index']);
+
+Route::get('category', [CategoryController::class, 'categories']);
+

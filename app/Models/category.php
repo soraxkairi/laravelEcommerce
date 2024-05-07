@@ -13,5 +13,15 @@ class category extends Model
         'category_name',
     ];
 
+
+    public function categories()
+    {
+        $category = category::all();
+        return $category;
+    }
+
+
+
+
     use HasFactory;
 }
