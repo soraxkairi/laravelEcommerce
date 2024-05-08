@@ -5,6 +5,8 @@ const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [categories, setListCategory] = useState();
+    const [isHover, setIsHover] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -14,7 +16,15 @@ const Header = () => {
         setSelectedItem(item);
     };
 
+    const handleMouseEnter = (category) => {
+        setIsHover(true);
+        setSelectedCategory(category);
 
+      };
+      const handleMouseLeave = () => {
+        setIsHover(false);
+        setSelectedCategory();
+      };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -76,31 +86,45 @@ const Header = () => {
                             className="menu-items"
                             style={{
                                 position: "absolute",
+                                width: "100%",
                                 background: "white",
-                                border: "1px solid #ccc",
+                                border: "3px solid #ccc",
                                 borderRadius: "20px",
                                 overflow: "hidden",
                                 marginLeft: "130%",
-                                marginTop: "-40%",
+                                marginTop: "-90%",
+                                transition: "all 0.3s ease",
                             }}
                         >
                             {categories.map((category, index) => (
                                 <li
                                     key={index}
                                     style={{
-                                        padding: "8px",
                                         whiteSpace: "nowrap",
+                                        transition: "all 0.3s ease",
                                     }}
-                                    onClick={() =>
-                                        handleItemClick(category.category_name)
-                                    }
                                 >
-                                    {category.category_name}{" "}
+                                    {}
+                                    <button
+                                        style={{
+                                            backgroundColor: category.category_name === selectedCategory ? "lightgray" : "white",
+                                            color: "black",
+                                            transition: "background 0.3s ease, color 0.3s ease",
+                                            padding:"8px",
+                                            width:"100%",
+                                          }}
+                                          onMouseEnter={() => handleMouseEnter(category.category_name)}
+                                          onMouseLeave={handleMouseLeave}
+                                        onClick={() =>
+                                            handleItemClick(category.category_name)
+                                        }
+                                    >
+                                        {category.category_name}
+                                    </button>
                                 </li>
                             ))}
                         </ul>
                     )}
-
                 </div>
             </div>
             <div
