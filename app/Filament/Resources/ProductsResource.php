@@ -74,7 +74,7 @@ class ProductsResource extends Resource
                 Tables\Columns\TextColumn::make('product_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('category'),
+                Tables\Columns\TextColumn::make('category.category_name'),
                 Tables\Columns\TextColumn::make('stock'),
                 Tables\Columns\TextColumn::make('price')
             ])

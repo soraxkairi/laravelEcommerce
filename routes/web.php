@@ -30,5 +30,8 @@ Route::get('/', function () {
 
 Route::get('products', [ProductController::class, 'index']);
 
-Route::get('category', [CategoryController::class, 'categories']);
+Route::get('categoryProducts/{category}', [ProductController::class, 'categoryProducts']);
 
+Route::get('showCategory', [CategoryController::class, 'categories']);
+
+Route::get('category/{category}', [CategoryController::class, 'showCategory']);

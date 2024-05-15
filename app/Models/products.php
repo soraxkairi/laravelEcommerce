@@ -23,6 +23,10 @@ class products extends Model
         'price',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(category::class);
+    }
 
     use HasFactory;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logo from "../images/LogoAsier.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -12,25 +13,22 @@ const Header = () => {
         setMenuOpen(!menuOpen);
     };
 
-    const handleItemClick = (item) => {
-        setSelectedItem(item);
-    };
 
     const handleMouseEnter = (category) => {
         setIsHover(true);
         setSelectedCategory(category);
-
-      };
-      const handleMouseLeave = () => {
+    };
+    const handleMouseLeave = () => {
         setIsHover(false);
         setSelectedCategory();
-      };
+    };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("category");
+                const response = await fetch("/showCategory");
                 const data = await response.json();
+                console.log(data);
                 setListCategory(data);
             } catch (error) {
                 console.error("Cant get products data:", error);
@@ -39,11 +37,7 @@ const Header = () => {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        if (selectedItem) {
-            console.log(selectedItem);
-        }
-    }, [selectedItem]);
+
 
     return (
         <header
@@ -104,23 +98,32 @@ const Header = () => {
                                         transition: "all 0.3s ease",
                                     }}
                                 >
-                                    {}
                                     <button
                                         style={{
-                                            backgroundColor: category.category_name === selectedCategory ? "lightgray" : "white",
+                                            backgroundColor:
+                                                category === selectedCategory
+                                                    ? "lightgray"
+                                                    : "white",
                                             color: "black",
-                                            transition: "background 0.3s ease, color 0.3s ease",
-                                            padding:"8px",
-                                            width:"100%",
-                                          }}
-                                          onMouseEnter={() => handleMouseEnter(category.category_name)}
-                                          onMouseLeave={handleMouseLeave}
+                                            transition:
+                                                "background 0.3s ease, color 0.3s ease",
+                                            padding: "8px",
+                                            width: "100%",
+                                        }}
+                                        onMouseEnter={() =>
+                                            handleMouseEnter(category)
+                                        }
+                                        onMouseLeave={handleMouseLeave}
                                         onClick={() =>
-                                            handleItemClick(category.category_name)
+                                            // handleItemClick(category)
+                                            window.location.href = `/category/${category.category_name}`
                                         }
                                     >
                                         {category.category_name}
                                     </button>
+                                    {index < categories.length - 1 && (
+                                        <hr style={{ width: "100%" }}></hr>
+                                    )}
                                 </li>
                             ))}
                         </ul>
