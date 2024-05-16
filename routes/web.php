@@ -35,3 +35,6 @@ Route::get('categoryProducts/{category}', [ProductController::class, 'categoryPr
 Route::get('showCategory', [CategoryController::class, 'categories']);
 
 Route::get('category/{category}', [CategoryController::class, 'showCategory']);
+
+Route::get('/{category}/{product}', [ProductController::class, 'ProductPage']);
+

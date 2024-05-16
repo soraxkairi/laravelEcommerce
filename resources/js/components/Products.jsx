@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import img1 from "../images/model1.jpg";
 import img2 from "../images/model2.jpg";
 
-const Button = ({ label, data }) => {
+const Button = ({ label, data,slug }) => {
     const [isHover, setIsHover] = useState(false);
 
     const boxStyle = {width: "100%",height: "100%",padding: "0.5rem 1rem",margin: "10px",backgroundColor: isHover ? "lightgray" : "gray",color: "white",
-      border: "none",borderRadius: "20px",cursor: "pointer",display: "flex",justifyContent: "space-between",flexDirection: "column",alignItems: "center",transition: ".2s",
+    border: "none",borderRadius: "20px",cursor: "pointer",display: "flex",justifyContent: "space-between",flexDirection: "column",alignItems: "center",transition: ".2s",
       cursor: "pointer",
     };
 
@@ -15,7 +15,7 @@ const Button = ({ label, data }) => {
       setIsHover(true);
     };
     const handleMouseLeave = () => {
-      setIsHover(false);
+        setIsHover(false);
     };
 
     return (
@@ -25,6 +25,9 @@ const Button = ({ label, data }) => {
           style={boxStyle}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          onClick={() =>
+            selectedProduct(data,slug)
+        }
         >
           <img
           //   src={data.image_url}
@@ -40,15 +43,18 @@ const Button = ({ label, data }) => {
     );
   };
 
-//Esto hace un fetch al back a la ruta api web a "products" y de ahi llega al controlador donde hace las funciones necesarias y lo devuelve.
-const CategoryProducts = ({ slug }) => {
-    const [products, setProducts] = useState([]);
+  const selectedProduct = async (product,slug) =>{
+      window.location.href = `/${slug}/${product.id}}`;
+  }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("/categoryProducts/" + slug);
-                const data = await response.json();
+  const CategoryProducts = ({ slug }) => {
+      const [products, setProducts] = useState([]);
+
+      useEffect(() => {
+          const fetchData = async () => {
+              try {
+                  const response = await fetch("/categoryProducts/" + slug);
+                  const data = await response.json();
                 setProducts(data);
             } catch (error) {
                 console.error("Cant get products data:", error);
@@ -64,6 +70,8 @@ const CategoryProducts = ({ slug }) => {
 
         }
     }, [products]);
+
+
 
     return (
         <div
@@ -88,7 +96,7 @@ const CategoryProducts = ({ slug }) => {
             >
                 {products.length > 0 &&(
                     products.map((product, index) => (
-                        <Button key={index} data={product} />
+                        <Button key={index} data={product} slug={slug}/>
                     )
                     ))}
             </div>

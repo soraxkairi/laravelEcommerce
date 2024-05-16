@@ -7,12 +7,12 @@ use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-
+use Inertia\Inertia;
 class ProductController extends Controller
 {
-     public function index()
+    public function index()
     {
-        $products = products::all();
+        $products = products::orderBy('created_at', 'desc')->take(4)->get();
         return $products;
     }
 
@@ -23,4 +23,9 @@ class ProductController extends Controller
         return $products;
     }
 
+    public function ProductPage ($slug,$productID)
+    {
+        $product = products::findOrFail($productID);
+        return Inertia::render('Product', ['slug' => $slug, 'product' => $product]);
+    }
 }
