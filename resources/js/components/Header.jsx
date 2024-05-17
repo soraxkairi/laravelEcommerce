@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../images/LogoAsier.png";
 import { Link } from "react-router-dom";
+import CartButton from "./CartButton";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -118,7 +119,6 @@ const Header = () => {
                                         }
                                         onMouseLeave={handleMouseLeave}
                                         onClick={() =>
-                                            // handleItemClick(category)
                                             (window.location.href = `/category/${category.category_name}`)
                                         }
                                     >
@@ -133,16 +133,7 @@ const Header = () => {
                     )}
                 </div>
             </div>
-            <div
-                className={`cart ${menuOpen ? "open" : ""}`}
-                style={{ display: "flex", alignItems: "center" }}
-            >
-                {/* Contenido del carrito */}
-                {/* Aquí puedes agregar
-                elementos del carrito */}
-                <span style={{ marginRight: "1rem" }}>🛒</span>
-                <span>3 items</span>
-            </div>
+            <CartButton menuOpen={menuOpen} itemCount={3} />
         </header>
     );
 };
