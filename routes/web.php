@@ -38,3 +38,6 @@ Route::get('category/{category}', [CategoryController::class, 'showCategory']);
 
 Route::get('/{category}/{product}', [ProductController::class, 'ProductPage']);
 
+Route::get('/{id}', [CategoryController::class, 'getCategory']);
+
+

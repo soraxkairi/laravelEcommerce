@@ -13,7 +13,6 @@ const Header = () => {
         setMenuOpen(!menuOpen);
     };
 
-
     const handleMouseEnter = (category) => {
         setIsHover(true);
         setSelectedCategory(category);
@@ -21,6 +20,10 @@ const Header = () => {
     const handleMouseLeave = () => {
         setIsHover(false);
         setSelectedCategory();
+    };
+
+    const goHome = () => {
+        window.location.href = `/`
     };
 
     useEffect(() => {
@@ -37,8 +40,6 @@ const Header = () => {
         fetchData();
     }, []);
 
-
-
     return (
         <header
             style={{
@@ -51,11 +52,13 @@ const Header = () => {
         >
             <div style={{ flexDirection: "row", display: "flex", gap: "32px" }}>
                 <div className="logo" style={{ flexShrink: "0" }}>
-                    <img
-                        src={logo}
-                        alt="Logo"
-                        style={{ width: "100px", borderRadius: "30px" }}
-                    />
+                    <button onClick={goHome}>
+                        <img
+                            src={logo}
+                            alt="Logo"
+                            style={{ width: "100px", borderRadius: "30px" }}
+                        />
+                    </button>
                 </div>
                 <div style={{ position: "relative", marginLeft: "4%" }}>
                     {categories != null && (
@@ -116,7 +119,7 @@ const Header = () => {
                                         onMouseLeave={handleMouseLeave}
                                         onClick={() =>
                                             // handleItemClick(category)
-                                            window.location.href = `/category/${category.category_name}`
+                                            (window.location.href = `/category/${category.category_name}`)
                                         }
                                     >
                                         {category.category_name}

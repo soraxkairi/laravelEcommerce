@@ -28,4 +28,6 @@ class ProductController extends Controller
         $product = products::findOrFail($productID);
         return Inertia::render('Product', ['slug' => $slug, 'product' => $product]);
     }
+
+
 }

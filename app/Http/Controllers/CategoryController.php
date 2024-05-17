@@ -24,5 +24,12 @@ class CategoryController extends Controller
 
     }
 
+    public function getCategory($id)
+    {
+        $category = category::findOrFail($id);
+        $category = $category->category_name;
+        return $category;
+
+    }
 
 }

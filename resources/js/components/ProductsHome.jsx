@@ -24,6 +24,9 @@ const Button = ({ label, data }) => {
         style={boxStyle}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={() =>
+            selectedProduct(data)
+        }
       >
         <img
         //   src={data.image_url}
@@ -38,6 +41,19 @@ const Button = ({ label, data }) => {
     </div>
   );
 };
+
+const selectedProduct = async (product) =>{
+    let slug = -1;
+    console.log(product);
+        try {
+          const response = await fetch(product.category_id);
+          slug = await response.text();
+        } catch (error) {
+          console.error("Cant get products data:", error);
+        }
+
+    window.location.href = `/${slug}/${product.id}`;
+}
 
 const Products = () => {
   const [products, setProducts] = useState([]);
