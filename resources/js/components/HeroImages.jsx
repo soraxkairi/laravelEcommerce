@@ -9,7 +9,7 @@ const showHeroImages = () => {
 
     return (
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", marginLeft: "3%" }}>
-        <div style={{ flex: "1 1 40%" }}>
+        <div style={{ flex: "1 1 40%", backgroundColor:'rgba(196, 196, 196, 0.8)'}}>
           <h2 style={{ fontWeight: "bold", fontSize:"160%" }}>«Tu estilo, tu elección, tu satisfacción.»</h2>
           <p style={{marginTop:"4%"}}>
               Esta es la mejor tienda de ropa, cada temporada tenemos las ropas mas solicitadas en el mundo. A que esperas, ¡Ven y prueba nuestros productos!

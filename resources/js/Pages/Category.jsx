@@ -13,7 +13,7 @@ const Category = ({ slug, data }) => {
     return (
         <div
             style={{
-                backgroundColor: "#AEFFFE",
+                backgroundColor: 'rgba(196 , 196, 196,1)',
                 padding: "20px",
                 width: "100%",
                 height: "100%",

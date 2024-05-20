@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CartButton = ({ menuOpen, itemCount }) => {
+const CartButton = ({ menuOpen, itemCount,toggleModal}) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const buttonStyles = {
@@ -29,8 +29,13 @@ const CartButton = ({ menuOpen, itemCount }) => {
         fontSize: "12px",
     };
 
+    const activeModal = () => {
+        toggleModal(true);
+    }
+
+
     return (
-        <div className={`cart ${menuOpen ? "open" : ""}`}>
+        <div className={`cart ${menuOpen ? "open" : ""}` }>
             <button
                 className="cart-button"
                 style={{
@@ -50,9 +55,7 @@ const CartButton = ({ menuOpen, itemCount }) => {
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                onClick={() => {
-                    console.log("Carrito pulsado");
-                }}
+                onClick={activeModal}
             >
                 <span
                     style={{

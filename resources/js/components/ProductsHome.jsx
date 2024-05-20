@@ -73,8 +73,8 @@ const Products = () => {
   }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", marginTop:"2%" }}>
-      <h2 style={{ fontWeight: "bold", fontSize:"160%"  }}>Productos más recientes: </h2>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", marginTop:"2%"}}>
+      <h2 style={{ fontWeight: "bold", fontSize:"160%",backgroundColor: 'rgba(196 , 196, 196,0.5 )', }}>Productos más recientes: </h2>
       <div style={{ display: "flex", justifyContent: "center", gap: "16px" }}>
         {products.length > 0 &&
           products.map((product, index) => (

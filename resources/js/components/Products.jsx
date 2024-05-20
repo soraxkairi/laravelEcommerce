@@ -81,6 +81,7 @@ const Button = ({ label, data,slug }) => {
                 alignItems: "center",
                 gap: "16px",
                 marginTop: "2%",
+                backgroundColor: 'rgba(196 , 196, 196,0.3 )',
 
             }}
         >

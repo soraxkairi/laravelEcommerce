@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import logo from "../images/LogoAsier.png";
 import { Link } from "react-router-dom";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import CartButton from "./CartButton";
+import Button from "@mui/material/Button";
 
-const Header = () => {
+const Header = ({toggleModal}) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [categories, setListCategory] = useState();
     const [isHover, setIsHover] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState();
+    const [openModal, setOpenModal] = useState(false); // Nuevo estado para controlar el modal
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -18,13 +23,14 @@ const Header = () => {
         setIsHover(true);
         setSelectedCategory(category);
     };
+
     const handleMouseLeave = () => {
         setIsHover(false);
         setSelectedCategory();
     };
 
     const goHome = () => {
-        window.location.href = `/`
+        window.location.href = `/`;
     };
 
     useEffect(() => {
@@ -44,11 +50,13 @@ const Header = () => {
     return (
         <header
             style={{
-                backgroundColor: "#AEFFFE",
+                backgroundColor: "rgba(196, 196, 196, 0)",
                 padding: "1rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
+                width:'100%',
+                height:'100%'
             }}
         >
             <div style={{ flexDirection: "row", display: "flex", gap: "32px" }}>
@@ -133,7 +141,13 @@ const Header = () => {
                     )}
                 </div>
             </div>
-            <CartButton menuOpen={menuOpen} itemCount={3} />
+            <CartButton
+                menuOpen={menuOpen}
+                itemCount={3}
+                toggleModal={toggleModal}
+                />
+
+
         </header>
     );
 };
