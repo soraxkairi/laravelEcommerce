@@ -2,13 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import img1 from '../images/model1.jpg';
 import img2 from '../images/model2.jpg';
-
+import cityImage from '../images/city.jpg'
 
 const showHeroImages = () => {
     const [products, setProducts] = useState([]);
 
     return (
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", marginLeft: "3%" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", marginLeft: "3%",backgroundImage: `url(${cityImage})`,
+    }}>
         <div style={{ flex: "1 1 40%", backgroundColor:'rgba(196, 196, 196, 0.8)'}}>
           <h2 style={{ fontWeight: "bold", fontSize:"160%" }}>«Tu estilo, tu elección, tu satisfacción.»</h2>
           <p style={{marginTop:"4%"}}>

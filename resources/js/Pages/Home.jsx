@@ -15,8 +15,8 @@ const Home = () => {
         <div id="root">
             <div
                 style={{
-                    backgroundColor: "#6FFE68",
-                    backgroundImage: `url(${cityImage})`,
+                    backgroundColor: "rgba(196, 196, 196, 1)",
+                    // backgroundImage: `url(${cityImage})`,
                     padding: "20px",
                     width: "100%",
                     height: "100%",

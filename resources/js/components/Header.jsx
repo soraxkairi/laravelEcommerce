@@ -50,7 +50,7 @@ const Header = ({toggleModal}) => {
     return (
         <header
             style={{
-                backgroundColor: "rgba(196, 196, 196, 0)",
+                backgroundColor: "rgba(240, 240, 240, 1)",
                 padding: "1rem",
                 display: "flex",
                 alignItems: "center",
