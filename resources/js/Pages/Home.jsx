@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 
 const Home = () => {
     const [openModal, setOpenModal] = useState(false);
-
+    const [getUserCart,setUserCart] = useState();
     return (
         <div id="root">
             <div
@@ -22,7 +22,7 @@ const Home = () => {
                     height: "100%",
                 }}
             >
-                <Header toggleModal={setOpenModal} />
+                <Header toggleModal={setOpenModal} userCart={setUserCart}/>
                 <hr style={{ width: "100%", borderTop: "3px solid black" }} />
                 <HeroImages />
                 <hr

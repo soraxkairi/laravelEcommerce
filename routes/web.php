@@ -1,6 +1,5 @@
 <?php
 
-use App\Filament\Resources\CategoryResource;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 
@@ -38,6 +37,13 @@ Route::get('category/{category}', [CategoryController::class, 'showCategory']);
 
 Route::get('/{category}/{product}', [ProductController::class, 'ProductPage']);
 
-Route::get('/{id}', [CategoryController::class, 'getCategory']);
+Route::get('products/{id}', [CategoryController::class, 'getCategory']);
+Route::get('/cart', [ProductController::class, 'showCart']);
+
+
+Route::post('/addToCart', [ProductController::class, 'saveProduct']);
+
+
+
 
 

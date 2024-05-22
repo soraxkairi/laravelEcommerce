@@ -46,8 +46,7 @@ const selectedProduct = async (product) =>{
     let slug = -1;
     console.log(product);
         try {
-          const response = await fetch(product.category_id);
-          slug = await response.text();
+          const response = await fetch(`products/${product.category.id}`);
         } catch (error) {
           console.error("Cant get products data:", error);
         }

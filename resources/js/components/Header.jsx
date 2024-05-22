@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import logo from "../images/LogoAsier.png";
 import { Link } from "react-router-dom";
 import Modal from "@mui/material/Modal";
@@ -6,14 +6,20 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CartButton from "./CartButton";
 import Button from "@mui/material/Button";
+import * as UserContext from '../../context/Context';
+import { Context } from "../context/context";
 
-const Header = ({toggleModal}) => {
+
+
+const Header = ({toggleModal,userCart }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [categories, setListCategory] = useState();
     const [isHover, setIsHover] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState();
-    const [openModal, setOpenModal] = useState(false); // Nuevo estado para controlar el modal
+    const [openModal, setOpenModal] = useState(false);
+    const [cartList, setCartList] = useState(userCart);
+    const {globalState,globalStateHandler} = useContext(Context);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -38,8 +44,14 @@ const Header = ({toggleModal}) => {
             try {
                 const response = await fetch("/showCategory");
                 const data = await response.json();
-                console.log(data);
                 setListCategory(data);
+                try {
+                    const dataCart = await fetch("/cart");
+                    const cartList = await dataCart.json();
+                    setCartList(cartList);
+                } catch (error) {
+                    console.error("Cant get cart list data:", error);
+                }
             } catch (error) {
                 console.error("Cant get products data:", error);
             }
@@ -47,16 +59,25 @@ const Header = ({toggleModal}) => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+     if (globalState)
+        {
+            console.log(globalState.cartList);
+
+            setCartList(globalState.cartList);
+        }
+    }, [globalState]);
+
     return (
         <header
             style={{
-                backgroundColor: "rgba(240, 240, 240, 1)",
+                backgroundColor: "rgba(240, 240, 240, 0.7 )",
                 padding: "1rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                width:'100%',
-                height:'100%'
+                width: "100%",
+                height: "100%",
             }}
         >
             <div style={{ flexDirection: "row", display: "flex", gap: "32px" }}>
@@ -141,13 +162,13 @@ const Header = ({toggleModal}) => {
                     )}
                 </div>
             </div>
-            <CartButton
-                menuOpen={menuOpen}
-                itemCount={3}
-                toggleModal={toggleModal}
+            {cartList && (
+                <CartButton
+                    menuOpen={menuOpen}
+                    itemCount={cartList.cart.length}
+                    toggleModal={toggleModal}
                 />
-
-
+            )}
         </header>
     );
 };
