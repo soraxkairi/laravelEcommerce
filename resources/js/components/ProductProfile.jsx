@@ -149,7 +149,7 @@ const ProductProfile = ({ product,userCart,openModal }) => {
                 <hr />
                 <p style={descriptionStyles}>{product.description}</p>
                 <div>{generateStars()}</div>
-                <p style={priceStyles}>Price: ${product.price}</p>
+                <p style={priceStyles}>Price: {product.price}€</p>
                 <button style={buttonStyles} onClick={addToCart}>
                     Añadir al carrito 🛒
                 </button>
