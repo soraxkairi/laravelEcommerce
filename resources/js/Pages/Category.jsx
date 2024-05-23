@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import img1 from "../images/model1.jpg";
 import img2 from "../images/model2.jpg";
 import Header from "../components/Header";
@@ -64,28 +64,39 @@ const Category = ({ slug, data }) => {
                         backgroundColor: "rgba(255, 255, 255, 1)",
                         overflowY: "scroll",
                         boxShadow: "0px 0px 15px rgba(0, 0, 0, 1)",
-                        padding: "30px",
+                        padding: "0", // Remove padding here
                         transform: "translateX(-100%)",
                     }}
                 >
-                    <div style={{ textAlign: "center"}}>
-                        <p style={{fontSize:'35px'}}>Cart </p>
-                        <hr />
-                        {getUserCart !== undefined && getUserCart.cart.map(item => (
-                            <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0' }}>
-                                <img src={img1} alt={item.product_name} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
-                                <div>
-                                    <p>{item.products.product_name}</p>
-                                    <p>€{item.products.price}</p>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        height: '100%',
+                        backgroundColor: '#FFFFFF',
+                    }}>
+                        <div style={{ textAlign: "left", padding: "30px" }}>
+                            <p style={{ fontSize: '35px' }}>Cart</p>
+                            <hr />
+                            {getUserCart !== undefined && getUserCart.cart.map(item => (
+                                <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',padding: '10px 0' }}>
+                                    <img src={img1} alt={item.product_name} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                                    <div>
+                                        <p>{item.products.product_name}</p>
+                                        <p>€{item.products.price}</p>
+                                    </div>
+                                    <button onClick={() => {console.log('works')}}>
+                                        Eliminar
+                                    </button>
                                 </div>
-                                <button onClick={() => {console.log('works')}}>
-                                    Eliminar
-                                </button>
-                            </div>
-                        ))}
-                                <div>
-                                <p style={{fontSize:'30px', marginRight:'45%', marginTop:'10%'}}>Total: {finalPrice}€</p>
+                            ))}
+                            {getUserCart !== undefined && getUserCart.cart.length > 0 && (
+                                <div style={{ marginTop: '20px', fontWeight: 'bold' }}>
+                                    <hr />
+                                    <p style={{fontSize: '30px'}}>Total: €{finalPrice}</p>
                                 </div>
+                            )}
+                        </div>
                     </div>
                 </Modal>
 
