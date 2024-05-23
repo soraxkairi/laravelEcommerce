@@ -36,7 +36,7 @@ const Product = ({ slug, product }) => {
                     height: "100%",
                 }}
             >
-                <Header userCart={getUserCart} />
+                <Header userCart={getUserCart} toggleModal={setOpenModal} />
                 <hr style={{ width: "100%", borderTop: "3px solid black" }} />
                 <ProductProfile product={product} userCart={setUserCart} openModal={setOpenModal}/>
             </div>
