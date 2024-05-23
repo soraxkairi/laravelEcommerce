@@ -62,9 +62,11 @@ const Header = ({toggleModal,userCart }) => {
     useEffect(() => {
      if (globalState)
         {
-            console.log(globalState.cartList);
-
-            setCartList(globalState.cartList);
+            if(globalState.cartList)
+                {
+                    console.log(globalState.cartList);
+                    setCartList(globalState.cartList);
+                }
         }
     }, [globalState]);
 

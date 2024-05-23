@@ -4,7 +4,7 @@ import img2 from "../images/model2.jpg";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import { Context } from "../context/context";
-const ProductProfile = ({ product,userCart }) => {
+const ProductProfile = ({ product,userCart,openModal }) => {
     const [rating, setRating] = useState(0);
     const {globalState,globalStateHandler} = useContext(Context)
 
@@ -106,7 +106,8 @@ const ProductProfile = ({ product,userCart }) => {
             const response = await fetch("/cart");
             const result = await response.json();
             console.log(result);
-			globalStateHandler({ cartList: result });
+			globalStateHandler({ cartList: result});
+            openModal(true);
             // userCart(result);
             return result.cart;
         } catch (error) {
