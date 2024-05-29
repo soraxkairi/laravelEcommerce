@@ -144,7 +144,7 @@ const Product = ({ slug, product }) => {
                                     <img src={img1} alt={item.product_name} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                                     <div>
                                         <p>{item.products.product_name}</p>
-                                        <p>€{item.products.price}</p>
+                                        <p style={{textAlign:'center'}}>{item.products.price}€</p>
                                     </div>
                                     <button onClick={() => handleDelete(index)}>
                                         Eliminar
