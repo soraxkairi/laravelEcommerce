@@ -147,7 +147,9 @@ const ProductProfile = ({ product,userCart,openModal }) => {
             <div style={infoStyles}>
                 <h1 style={titleStyles}>{product.product_name}</h1>
                 <hr />
+                <span style={{position:"absolute",marginTop:"5%", padding:"21px",fontSize:"30px" }}>Descripcion:</span>
                 <p style={descriptionStyles}>{product.description}</p>
+                <span style={{position:"absolute",marginTop:"10%", padding:"21px",fontSize:"30px" }}>RATING:</span>
                 <div>{generateStars()}</div>
                 <p style={priceStyles}>Price: {product.price}€</p>
                 <button style={buttonStyles} onClick={addToCart}>

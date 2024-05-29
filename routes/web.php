@@ -43,6 +43,9 @@ Route::get('/cart', [ProductController::class, 'showCart']);
 
 Route::post('/addToCart', [ProductController::class, 'saveProduct']);
 
+Route::post('deleteMyCart', [ProductController::class, 'deleteCart']);
+
+
 
 
 

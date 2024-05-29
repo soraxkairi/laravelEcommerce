@@ -50,12 +50,11 @@ class ProductsResource extends Resource
                                                 Forms\Components\TextArea::make('description')->label('Description')
                                                     ->maxLength(50),
 
-                                                FileUpload::make('imagen')->label('ImagenUrl')
+                                                FileUpload::make('image')->label('ImagenUrl')
                                                     ->disk('local')
                                                     ->directory('public')
                                                     ->image()
                                                     ->maxSize(1024),
-
 
 
                                             ])

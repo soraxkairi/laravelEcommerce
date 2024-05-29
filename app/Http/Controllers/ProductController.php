@@ -48,6 +48,21 @@ class ProductController extends Controller
         return response()->json(['message' => 'Producto añadido al carrito', 'product' => $product,'cart'=> $cart]);
     }
 
+    public function deleteCart(Request $request)
+{
+    $deleteIndex = $request->input('delete_index');
+    $cart = Session::get('cart', []);
+
+    if (is_numeric($deleteIndex) && isset($cart[$deleteIndex])) {
+        unset($cart[$deleteIndex]);
+        $cart = array_values($cart);
+        Session::put('cart', $cart);
+        return response()->json(['message' => 'Producto eliminado del carrito', 'cart' => $cart]);
+    } else {
+        return response()->json(['error' => 'Índice de eliminación no válido'], 400);
+    }
+}
+
     public function showCart(Request $request)
     {
         $cart = Session::get('cart', []);

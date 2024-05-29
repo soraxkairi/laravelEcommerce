@@ -5,6 +5,8 @@ import img2 from '../images/model2.jpg';
 const Button = ({ label, data }) => {
   const [isHover, setIsHover] = useState(false);
 
+
+  
   const boxStyle = {width: "100%",height: "100%",padding: "0.5rem 1rem",margin: "10px",backgroundColor: isHover ? "lightgray" : "gray",color: "white",
     border: "none",borderRadius: "20px",cursor: "pointer",display: "flex",justifyContent: "space-between",flexDirection: "column",alignItems: "center",transition: ".2s",
     cursor: "pointer",
@@ -56,6 +58,7 @@ const selectedProduct = async (product) =>{
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  
 
   useEffect(() => {
     const fetchData = async () => {

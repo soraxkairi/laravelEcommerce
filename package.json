@@ -24,9 +24,11 @@
     "dependencies": {
         "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.5",
+        "@fortawesome/fontawesome-free": "^6.5.2",
         "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/react": "^1.0.16",
         "@mui/material": "^5.15.18",
+        "react-icons": "^5.2.1",
         "react-modal": "^3.16.1",
         "react-router-dom": "^6.23.0",
         "react-spring": "^9.7.3"

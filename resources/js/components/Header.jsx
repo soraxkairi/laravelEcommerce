@@ -70,6 +70,8 @@ const Header = ({toggleModal,userCart }) => {
         }
     }, [globalState]);
 
+   
+
     return (
         <header
             style={{
